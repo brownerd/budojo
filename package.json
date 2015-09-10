@@ -4,12 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "budo index.js --live"
+    "start": "budo index.js --live | garnish"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "budo": "^4.2.1",
+    "garnish": "^3.2.0",
     "watchify": "^3.4.0"
   }
 }
