@@ -1,6 +1,6 @@
 # BUDOJO
 
-Just a repo for running JS in the browser
+A little repo for running js/css in the browser without all the boilerplate setup
 
 1. clone the repo
 1. run `npm i`
