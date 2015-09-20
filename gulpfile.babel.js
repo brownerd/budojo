@@ -8,7 +8,7 @@ import openURL from 'opn'
 import watchify from 'watchify'
 import babelify from 'babelify'
 
-const browser = 'google chrome canary'
+const browser = 'google chrome'
 const argv = yargs
     .usage('Usage: -f [num]')
     .argv
