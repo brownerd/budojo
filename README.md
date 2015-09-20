@@ -20,5 +20,5 @@ I've used CodeRunner and the NODE REPL, but that only gives me console output. I
 
 ## Change log
 
--v2.0.0 - Added Gulp, and Yargs and more. I wanted to be able to work with more files. And I wanted to be able to launch any one of them from the command line.
+- v2.0.0 - Added Gulp, and Yargs and more. I wanted to be able to work with more files. And I wanted to be able to launch any one of them from the command line.
 - v1.0.0 - Just a simple app for running one js file using budo
