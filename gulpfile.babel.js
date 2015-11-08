@@ -1,7 +1,7 @@
 import gulp from 'gulp'
 import budo from 'budo'
 import browserify from 'browserify'
-import babs from 'babelify'
+import {configure} from 'babelify'
 
 import filesystem from 'fs'
 import yargs from 'yargs'
@@ -10,7 +10,7 @@ import openURL from 'opn'
 
 import todo from 'gulp-todo'
 
-const babelify = babs.configure({
+const babelify = configure({
   presets: ['es2015']
 })
 
@@ -20,10 +20,10 @@ const argv = yargs
     .argv
 
 // http://stackoverflow.com/questions/20822273/best-way-to-get-folder-and-file-list-in-javascript
-var getAllFilesFromFolder = function(dir = 'js', num = 1) {
+let getAllFilesFromFolder = (dir = 'js', num = 1) => {
   var results = []
-  filesystem.readdirSync(`./${dir}`).forEach(function(file) {
-    results.push(`./${dir}/${file}`)
+  filesystem.readdirSync(`./${dir}`).forEach( file => {
+    results.push(`${dir}/${file}`)
   })
   // Since the directory has a .DS_store file, we don't neet to reduce 'num' by 1. coolish.
   return results[(num)]
@@ -31,13 +31,15 @@ var getAllFilesFromFolder = function(dir = 'js', num = 1) {
 
 
 const entry = getAllFilesFromFolder(argv.d, argv.f)
-const outfile = 'bundle.js'
 
 
-//the development task
-gulp.task('default', function(cb) {
+///////////////////
+// Task: DEFAULT //
+///////////////////
 
-  var ready = function(){}
+gulp.task('default', (cb) => {
+
+  var ready = () => {}
 
   //dev server
   budo(entry, {
@@ -50,19 +52,19 @@ gulp.task('default', function(cb) {
       transform: babelify   //browserify transforms
     }
   }).on('exit', cb)
-  .on('connect', function(ev) {
+  .on('connect', (ev) => {
     ready = once(openURL.bind(null, ev.uri, {app: browser} ))
   })
-  .once('update', function() {
+  .once('update', () => {
     ready()
   })
 })
 
 
 
-//////////
-// TODO //
-//////////
+////////////////
+// Task: TODO //
+////////////////
 
 gulp.task('todo', () => {
  gulp.src(['./js/*.js', './gulpfile.babel.js'])
@@ -73,7 +75,7 @@ gulp.task('todo', () => {
    // -> Will output a TODO.md with your todos
 })
 
-// Just a task for Console loggin stuff
-gulp.task('clog', function() {
+// Just a task for loggin stuff to the console
+gulp.task('clog', () => {
   console.log( entry );
 })
