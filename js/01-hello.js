@@ -1,5 +1,6 @@
-console.log( 'what up!' );
+console.log( 'Hello!' );
 
+console.log( 'what up!' );
 
 var h1 = document.createElement('h1')
 var msg = document.createTextNode("What up!")
